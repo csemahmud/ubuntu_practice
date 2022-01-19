@@ -32,7 +32,7 @@ public class ApartmentGateway extends RootGateway {
 			"  `id` int(11) NOT NULL,\n" + 
 			"  `name` varchar(255) DEFAULT NULL,\n" + 
 			"  `price` int(11) DEFAULT NULL,\n" + 
-			"  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP\n" + 
+			"  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n" + 
 			") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
 	
 	private final String PRIMARY_KEY_RAW = "ALTER TABLE `tbl_apartment`\n" + 
@@ -139,11 +139,10 @@ public class ApartmentGateway extends RootGateway {
 		 */
 	public class SelectedStudent {
 
-		/**
-		 * 
-		 */
-		public SelectedStudent() {
-			// TODO Auto-generated constructor stub
+		public ApartmentDAO byPropertyValue(String property, String value) {
+			
+			return null;
+			
 		}
 
 	}
