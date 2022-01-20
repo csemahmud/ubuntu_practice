@@ -79,6 +79,7 @@ public class ApartmentGateway extends RootGateway {
 				+ TBL_APARTMENT + " ("
 				+ NAME + ", "
 				+ PRICE + ") VALUES (?, ?);";
+		
 		try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -137,14 +138,93 @@ public class ApartmentGateway extends RootGateway {
 		 * @author KHAN MAHMUDUL HASAN CSE BD JP
 		 *
 		 */
-	public class SelectedStudent {
+	public class SelectedApartment {
 
 		public ApartmentDAO byPropertyValue(String property, String value) {
+			
+			String sql = "SELECT * FROM " + TBL_APARTMENT + " WHERE " + property + " = '" + value + "'";
+			
+			try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
+				
+				Statement statement = conn.createStatement();
+				ResultSet result = statement.executeQuery(sql);
+				if(result.next()) {
+					
+					return new ApartmentDAO(
+							result.getInt(1), result.getString(NAME),
+							result.getInt(3), result.getDate(DATE));
+					
+				}
+				
+			} catch (Exception ex) {
+				
+				ex.printStackTrace();
+				
+			}
 			
 			return null;
 			
 		}
+		
+		public ApartmentDAO byName(String name) {
+			
+			return byPropertyValue(NAME, name);
+			
+		}
 
+	}
+	
+	public SelectedApartment selectedApartment() {
+		
+		return new SelectedApartment();
+		
+	}
+	
+	public int updateApartment(ApartmentDAO apartment) {
+		
+		String sql = "UPDATE "
+				+ TBL_APARTMENT + " SET "
+				+ NAME + "=?, "
+				+ PRICE + "=? WHERE " + ID + " = ?";
+		
+		try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, apartment.getName());
+			statement.setString(2, Integer.toString(apartment.getPrice()));
+			statement.setString(3, Integer.toString(apartment.getId()));
+			return statement.executeUpdate();
+			
+		} catch (Exception ex) {
+			// TODO: handle exception
+			
+			ex.printStackTrace();
+			
+		}
+		return -10;
+	}
+	
+	public int deleteApartment(ApartmentDAO apartment) {
+		
+		String sql = "DELETE FROM "
+				+ TBL_APARTMENT 
+				+ " WHERE " + ID + " = ?";
+		
+		try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, apartment.getName());
+			statement.setString(2, Integer.toString(apartment.getPrice()));
+			statement.setString(3, Integer.toString(apartment.getId()));
+			return statement.executeUpdate();
+			
+		} catch (Exception ex) {
+			// TODO: handle exception
+			
+			ex.printStackTrace();
+			
+		}
+		return -10;
 	}
 	
 	
