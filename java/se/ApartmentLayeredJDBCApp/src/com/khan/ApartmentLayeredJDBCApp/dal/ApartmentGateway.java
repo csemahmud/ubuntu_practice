@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dal;
+package com.khan.ApartmentLayeredJDBCApp.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -226,7 +226,5 @@ public class ApartmentGateway extends RootGateway {
 		}
 		return -10;
 	}
-	
-	
 
 }

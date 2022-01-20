@@ -1,14 +1,14 @@
 /**
  * 
  */
-package dal;
+package com.khan.ApartmentLayeredJDBCApp.dal;
 
 /**
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
  */
 public class RootGateway {
-	
+
 	protected final String SERVER;
 	protected final String DATABASE;
 	protected final String DBURL;
