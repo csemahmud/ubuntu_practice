@@ -174,13 +174,13 @@ public class ApartmentGateway extends RootGateway {
 
 	}
 	
-	public SelectedApartment selectedApartment() {
+	public SelectedApartment selectApartment() {
 		
 		return new SelectedApartment();
 		
 	}
 	
-	public int updateApartment(ApartmentDAO apartment) {
+	public int updateApartmentById(ApartmentDAO apartment) {
 		
 		String sql = "UPDATE "
 				+ TBL_APARTMENT + " SET "
@@ -204,7 +204,7 @@ public class ApartmentGateway extends RootGateway {
 		return -10;
 	}
 	
-	public int deleteApartment(ApartmentDAO apartment) {
+	public int deleteApartmentById(int apartmentId) {
 		
 		String sql = "DELETE FROM "
 				+ TBL_APARTMENT 
@@ -213,9 +213,7 @@ public class ApartmentGateway extends RootGateway {
 		try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, apartment.getName());
-			statement.setString(2, Integer.toString(apartment.getPrice()));
-			statement.setString(3, Integer.toString(apartment.getId()));
+			statement.setString(1, Integer.toString(apartmentId));
 			return statement.executeUpdate();
 			
 		} catch (Exception ex) {

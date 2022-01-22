@@ -4,6 +4,7 @@
 package com.khan.ApartmentLayeredJDBCApp.bll;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.khan.ApartmentLayeredJDBCApp.dal.ApartmentGateway;
 import com.khan.ApartmentLayeredJDBCApp.models.ApartmentDAO;
@@ -57,5 +58,41 @@ public class ApartmentManager {
 		
 		return "Could NOT SAVE " + apartment.getName();
 		
+	}
+	
+	public List<ApartmentDAO> getAllApartment(){
+		
+		return anApartmentGatewayObj.selectAllApartments();
+		
+	}
+	
+	public ApartmentDAO getApartmentByName(String name) {
+		
+		return anApartmentGatewayObj.selectApartment().byName(name);
+		
+	}
+	
+	public String editApartment(ApartmentDAO apartment) {
+		
+		if(anApartmentGatewayObj.updateApartmentById(apartment) > 0) {
+			
+			return "Apartment " + apartment.getName()
+				+ " has been UPDATED successfully.";
+			
+		}
+		
+		return "Could NOT update " + apartment.getName();
+	}
+	
+	public String removeApartment(ApartmentDAO apartment) {
+		
+		if(anApartmentGatewayObj.deleteApartmentById(apartment.getId()) > 0) {
+			
+			return "Apartment " + apartment.getName()
+				+ " has been REMOVED successfully.";
+			
+		}
+		
+		return "Could NOT remove " + apartment.getName();
 	}
 }
