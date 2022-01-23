@@ -23,8 +23,9 @@ public class ApartmentDAO {
 	 * @param date
 	 */
 	public ApartmentDAO(int id, String name, int price, Date date) {
-		this(name, price, date);
+		this(name, price);
 		this.id = id;
+		this.date = date;
 	}
 
 	/**
@@ -32,11 +33,10 @@ public class ApartmentDAO {
 	 * @param price
 	 * @param date
 	 */
-	public ApartmentDAO(String name, int price, Date date) {
+	public ApartmentDAO(String name, int price) {
 		this();
 		this.name = name;
 		this.price = price;
-		this.date = date;
 	}
 
 	/**

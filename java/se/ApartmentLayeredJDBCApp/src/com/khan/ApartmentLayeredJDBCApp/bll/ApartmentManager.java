@@ -60,7 +60,7 @@ public class ApartmentManager {
 		
 	}
 	
-	public List<ApartmentDAO> getAllApartment(){
+	public List<ApartmentDAO> getAllApartments(){
 		
 		return anApartmentGatewayObj.selectAllApartments();
 		
