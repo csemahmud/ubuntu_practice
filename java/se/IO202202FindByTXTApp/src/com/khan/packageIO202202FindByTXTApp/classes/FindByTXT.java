@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystemException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,8 +86,12 @@ public class FindByTXT extends SimpleFileVisitor<Path> {
 			System.err.println(ex);
 		}
 		
+		// Defaults to Read
 		try(SeekableByteChannel sbchannel = Files.newByteChannel(file)){
 			
+			// Read the bytes with the proper encoding in this platform. 
+			// If you skip this step, you might seem something looks like
+			// Chinese characters when you expect Latin-style characters
 			ByteBuffer buffer = ByteBuffer.allocate(10000);
 			String encoding = System.getProperty("file.encoding");
 			
@@ -110,15 +115,47 @@ public class FindByTXT extends SimpleFileVisitor<Path> {
 		return FileVisitResult.CONTINUE;
 	}
 
-	private boolean search(String line, String textToSearch2, int i) {
+	private boolean search(String searchMe, String findMe, int lineNo) {
 		// TODO Auto-generated method stub
+		
+		int searchMeLength = searchMe.length();
+		int findMeLength = findMe.length();
+		for(int i = 0;
+				i <= (searchMeLength - findMeLength);
+				i++) {
+			
+			if(searchMe.regionMatches(i, findMe, 0, findMeLength)) {
+				
+				System.out.println("\tLine : " + lineNo
+						+ " : " + searchMe);
+				System.out.println("\t\"" + searchMe.substring(i, i + findMeLength)
+						+ "\" found on " + i + " position .");
+				
+				return true;
+				
+			}
+			
+		}
+		
 		return false;
 	}
 
 	@Override
-	public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+	public FileVisitResult visitFileFailed(Path file, IOException exec) throws IOException {
 		// TODO Auto-generated method stub
-		return super.visitFileFailed(file, exc);
+		
+		if(exec instanceof FileSystemException) {
+			
+			System.err.println("cycle detected: " + file);
+			
+		} else {
+			
+			System.err.format("Unable to copy:" + "%s: %s%n", file, exec);
+			
+		}
+		
+		super.visitFileFailed(file, exec);
+		return FileVisitResult.CONTINUE;
 	}
 	
 }
