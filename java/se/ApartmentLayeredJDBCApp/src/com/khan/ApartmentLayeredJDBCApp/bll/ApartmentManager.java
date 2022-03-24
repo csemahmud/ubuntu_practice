@@ -66,6 +66,12 @@ public class ApartmentManager {
 		
 	}
 	
+	public List<ApartmentDAO> getAllApartmentsByReverseAlphabetically(){
+		
+		return anApartmentGatewayObj.selectAllApartmentsOrderByDesc("name");
+		
+	}
+	
 	public ApartmentDAO getApartmentByName(String name) {
 		
 		return anApartmentGatewayObj.selectApartment().byName(name);

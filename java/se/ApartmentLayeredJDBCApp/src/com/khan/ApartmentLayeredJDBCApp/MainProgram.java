@@ -17,8 +17,8 @@ public class MainProgram {
 	private static ApartmentManager anApartmentManagerObj = new ApartmentManager();
 	private static List<ApartmentDAO> allApartments;
 	private final static String NORTH = "North Tower";
-	private final static String NIRVANA = "Nirvana Tower";
 	private final static String HAMID = "Hamid Tower";
+	private final static String NIRVANA = "Nirvana Tower";
 	private final static String NEW = "New Tower";
 
 	/**
@@ -39,15 +39,20 @@ public class MainProgram {
 		System.out.println("\t" + anApartmentManagerObj.saveApartment(
 				new ApartmentDAO(NORTH, 10_000)));
 		System.out.println("\t" + anApartmentManagerObj.saveApartment(
-				new ApartmentDAO(NIRVANA, 20_000)));
-		System.out.println("\t" + anApartmentManagerObj.saveApartment(
 				new ApartmentDAO(HAMID, 30_000)));
+		System.out.println("\t" + anApartmentManagerObj.saveApartment(
+				new ApartmentDAO(NIRVANA, 20_000)));
 		if(anApartmentManagerObj.getApartmentByName(NEW) == null) {
 			System.out.println("\t" + anApartmentManagerObj.saveApartment(
 					new ApartmentDAO(NEW, 40_000)));
 		}
 		
 		allApartments = anApartmentManagerObj.getAllApartments();
+		printApartments();
+		System.out.println();
+		
+		System.out.println("\tShowing Apartments Reverse Alphabetically : ");
+		allApartments = anApartmentManagerObj.getAllApartmentsByReverseAlphabetically();
 		printApartments();
 		System.out.println();
 		
