@@ -134,6 +134,38 @@ public class ApartmentGateway extends RootGateway {
 		
 	}
 	
+	public List<ApartmentDAO> selectAllApartmentsOrderByDesc(String propertyName){
+		
+		List<ApartmentDAO> allApartments = new ArrayList<>();
+		
+		String sql = "SELECT * FROM " + TBL_APARTMENT + " ORDER BY `" + propertyName + "` DESC";
+		
+		try(Connection conn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD)){
+			
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+			while(result.next()) {
+				allApartments.add(new ApartmentDAO(
+						result.getInt(1), result.getString(NAME),
+						result.getInt(3), result.getDate(DATE)));
+			}
+			
+		} catch (SQLException ex) {
+			
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			
+		} catch (Exception ex) {
+			
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			
+		}
+		
+		return allApartments;
+		
+	}
+	
 	/**
 		 * @author KHAN MAHMUDUL HASAN CSE BD JP
 		 *
