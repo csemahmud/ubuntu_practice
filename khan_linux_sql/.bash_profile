@@ -26,8 +26,9 @@ cd practice_dir
 sudo pwd
 sudo touch practice.txt
 sudo chmod 777 practice.txt
+sudo printf "<h3>Hello World !!! Smaller</h3>\n" >> practice.txt
 sudo echo '<h1>Hello World !!!</h1>' >> practice.txt
-sudo printf "<h3>My Name Is <i>KHAN カーン</i></h3>" >> practice.txt
+sudo printf "<h3>My Name Is <i>KHAN カーン</i></h3>\n" >> practice.txt
 sudo cat practice.txt
 sudo nano practice.txt
 sudo cat practice.txt
@@ -36,10 +37,12 @@ sudo chmod 777 html
 sudo cp practice.txt html/practice.txt
 sudo mv html/practice.txt html/index.html
 sudo ls -l -R
+sudo ls -l -R &
 sudo vi html/index.html
 sudo cat html/index.html
 sudo cat -b html/index.html
 sudo wc html/index.html
+sudo sort -r html/index.html
 sudo pr -2 -h "Hello World html" html/index.html
 sudo rm html/*
 sudo rmdir *
@@ -54,13 +57,15 @@ sudo man ls
 cd ../java/se/IO19FindByTXTApp
 type -a pwd
 sudo pwd
-sudo ls -ltr -R docs | grep java
-sudo ls -ltr -R docs | grep -i JAVA
-sudo ls -ltr -R docs | grep JAVA
+sudo ls -ltr -R docs | grep 'java\|php' | sort +4n | more
+sudo ls -ltr -R docs | grep -i 'JAVA\|PHP' | sort +4n | more
+sudo ls -ltr -R docs | grep 'JAVA\|PHP' | sort +4n | more
+sudo ls -ltr -R docs | grep -i 'JAVA\|PHP' | sort +4n | more &
 sudo man less
 sudo dmesg | less
 sudo dmesg | less -p "registers"
 cd docs/programming/languages
 sudo less -F java.txt
-sudo less -F java.txt | grep -v জাভা
-
+sudo less -F java.txt | grep -v জাভা | sort +4n | more
+sudo ps -f
+sudo top

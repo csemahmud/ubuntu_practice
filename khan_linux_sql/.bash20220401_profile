@@ -1,0 +1,46 @@
+sudo mkdir practice_dir
+sudo chmod 777 practice_dir
+cd practice_dir
+sudo pwd
+sudo touch practice.txt
+sudo chmod 777 practice.txt
+sudo printf "<h3>Hello World !!! Smaller</h3>\n" >> practice.txt
+sudo echo '<h1>Hello World !!!</h1>' >> practice.txt
+sudo printf "<h3>My Name Is <i>KHAN カーン</i></h3>\n" >> practice.txt
+sudo cat practice.txt
+sudo nano practice.txt
+sudo cat practice.txt
+sudo mkdir html
+sudo chmod 777 html
+sudo cp practice.txt html/practice.txt
+sudo mv html/practice.txt html/index.html
+sudo chmod 77 html/index.html
+sudo ls -l -R
+sudo ls -l -R &
+sudo vi html/index.html
+sudo printf "<p>Doctors and Engineers play very important role in our society. I am an engineer. But I respect doctors too. I have developed an website to search doctors.<\p>\n" >> html/index.html
+sudo echo '<p>This Line Contains None</p>' >> html/index.html
+sudo echo '<p>This Line Contains dOcTor</p>' >> html/index.html
+sudo printf "<p>This Line Contains None</p>\n" >> html/index.html
+sudo printf "<p>This Line Contains eNgInEeR</p>\n" >> html/index.html
+sudo echo '<p>This Line Contains None</p>' >> html/index.html
+sudo cat html/index.html
+sudo cat -b html/index.html
+sudo less -F html/index.html | grep -i 'doctor\|engineer' | sort +4n | more
+sudo wc html/index.html
+sudo sort -r html/index.html
+sudo pr -2 -h "Hello World html" html/index.html
+echo "Hello I am sending an attached file" | mail -s "Attached File" m.h.khan.cse@gmail.com -A html/index.html
+sudo vi -R html/index.html
+sudo rm html/*
+sudo rmdir *
+sudo rm *
+cd ..
+sudo rmdir practice_dir
+sudo pwd
+
+
+sudo ping google.com
+sudo ping giiiiiigle.com
+sudo telnet amrood.com
+

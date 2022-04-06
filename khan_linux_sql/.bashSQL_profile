@@ -1,0 +1,12 @@
+sudo touch sql_apartment.sql
+sudo chmod 777 sql_apartment.sql
+sudo ls -l sql_apartment.sql
+sudo echo 'SHOW DATABASES;' >> sql_apartment.sql
+sudo printf "USE db_real_estate_management_system;\n" >> sql_apartment.sql
+sudo echo 'SHOW TABLES;' >> sql_apartment.sql
+sudo printf "SELECT * FROM tbl_apartment;\n" >> sql_apartment.sql
+sudo nano sql_apartment.sql
+sudo cat sql_apartment.sql
+sudo /opt/lampp/lampp restart
+sudo /opt/lampp/bin/mysql -h localhost -u root -p < sql_apartment.sql
+sudo rm sql_apartment.sql
