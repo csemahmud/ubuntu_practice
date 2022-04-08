@@ -1,0 +1,7 @@
+sudo ./test.sh Khan Mahmud 20 Years Old
+sudo bash bash_shell.sh
+sudo ./test2.sh
+source .bashSQL_profile
+source .bash20220401_profile
+source .bash_profile
+

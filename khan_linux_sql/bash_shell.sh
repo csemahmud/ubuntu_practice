@@ -13,15 +13,18 @@ select DRINK in tea cofee water juice appe all none
 do
    case $DRINK in
       tea|cofee|water|all) 
-         echo "Go to canteen"
+         sudo echo "Go to canteen"
          ;;
       juice|appe)
-         echo "Available at home"
+         sudo echo "Available at home"
       ;;
       none) 
          break 
       ;;
-      *) echo "ERROR: Invalid selection" 
+      *) sudo echo "ERROR: Invalid selection" 
       ;;
    esac
 done
+
+a=10
+sudo echo -e "Value of a is $a \n"
