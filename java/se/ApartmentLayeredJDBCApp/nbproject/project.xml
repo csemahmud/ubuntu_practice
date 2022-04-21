@@ -4,10 +4,14 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>ApartmentLayeredJDBCApp</name>
+            <explicit-platform explicit-source-supported="true"/>
             <source-roots>
                 <root id="src.dir" name="src"/>
             </source-roots>
             <test-roots/>
         </data>
+        <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
+            <definitions>external_lib/nblibraries.properties</definitions>
+        </libraries>
     </configuration>
 </project>
