@@ -77,6 +77,7 @@ EndOfCommands
 sudo cat test.txt
 sudo rm users
 sudo rm '*test.txt*'
+sudo rm .test.txt.swp
 
 command > /dev/null
 command > /dev/null 2>&1
