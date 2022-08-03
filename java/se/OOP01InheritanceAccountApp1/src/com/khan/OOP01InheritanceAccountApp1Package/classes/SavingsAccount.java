@@ -10,6 +10,7 @@ package com.khan.OOP01InheritanceAccountApp1Package.classes;
 public class SavingsAccount extends Account {
 	
 	private final double interestAmount;
+	private final double bankTransferFee = 250;
 
 	/**
 	 * @param accNo
@@ -45,6 +46,13 @@ public class SavingsAccount extends Account {
 		return interestAmount;
 	}
 
+	/**
+	 * @return the bankTransferFee
+	 */
+	public final double getBankTransferFee() {
+		return bankTransferFee;
+	}
+
 	@Override
 	public String withdraw(double amount) {
 		// TODO Auto-generated method stub
@@ -52,6 +60,21 @@ public class SavingsAccount extends Account {
 		if(getBalance() - amount >= 10_000) {
 			
 			return super.withdraw(amount);
+			
+		}
+		
+		return "\n\tUnderflow !!! Insufficient Balance ";
+	}
+
+	@Override
+	public String bankTransfer(String transferToAccNo, double amount) {
+		// TODO Auto-generated method stub
+		
+		if(getBalance() - amount - bankTransferFee >= 10_000) {
+			
+			setBalance(getBalance() - amount - bankTransferFee);
+			return "\n\tTransferred " + amount + " Yen to account : " 
+					+ transferToAccNo + " Successfully .";
 			
 		}
 		

@@ -11,6 +11,7 @@ public class CheckingAccount extends Account {
 	
 	private int noOfTransactions;
 	private final double serviceCharge;
+	private final double bankTransferFee = 500;
 
 	/**
 	 * @param accNo
@@ -58,6 +59,22 @@ public class CheckingAccount extends Account {
 	 */
 	public final double getServiceCharge() {
 		return serviceCharge;
+	}
+
+	/**
+	 * @return the bankTransferFee
+	 */
+	public final double getBankTransferFee() {
+		return bankTransferFee;
+	}
+
+	@Override
+	public String bankTransfer(String transferToAccNo, double amount) {
+		// TODO Auto-generated method stub
+			
+		setBalance(getBalance() - amount - bankTransferFee);
+		return "\n\tTransferred " + amount + " Yen to account : " 
+				+ transferToAccNo + " Successfully .";
 	}
 
 }

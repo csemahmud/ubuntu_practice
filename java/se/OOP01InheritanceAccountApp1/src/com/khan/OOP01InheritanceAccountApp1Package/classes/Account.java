@@ -7,7 +7,7 @@ package com.khan.OOP01InheritanceAccountApp1Package.classes;
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
  */
-public class Account {
+public abstract class Account implements IAccount {
 	
 	private final String accNo;
 	private double balance;
@@ -33,6 +33,7 @@ public class Account {
 	/**
 	 * @return the accNo
 	 */
+	@Override
 	public final String getAccNo() {
 		return accNo;
 	}
@@ -40,21 +41,35 @@ public class Account {
 	/**
 	 * @return the balance
 	 */
+	@Override
 	public final double getBalance() {
 		return balance;
 	}
 	
+	/**
+	 * @param balance the balance to set
+	 */
+	@Override
+	public final void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	@Override
 	public final String deposit(double amount) {
 		
 		balance += amount;
 		return "\n\tDeposited " + amount + " Yen Successfully .";
 	}
 	
+	@Override
 	public String withdraw(double amount) {
 		
 		balance -= amount;
 		return "\n\tWithdrawn " + amount + " Yen Successfully .";
 	}
+	
+	@Override
+	public abstract String bankTransfer(String transferToAccNo, double amount);
 
 	@Override
 	public String toString() {
