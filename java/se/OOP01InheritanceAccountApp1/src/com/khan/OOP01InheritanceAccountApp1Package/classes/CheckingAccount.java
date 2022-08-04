@@ -7,7 +7,7 @@ package com.khan.OOP01InheritanceAccountApp1Package.classes;
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
  */
-public class CheckingAccount extends Account {
+public final class CheckingAccount extends Account {
 	
 	private int noOfTransactions;
 	private final double serviceCharge;
@@ -69,7 +69,7 @@ public class CheckingAccount extends Account {
 	}
 
 	@Override
-	public String bankTransfer(String transferToAccNo, double amount) {
+	public final String bankTransfer(String transferToAccNo, double amount) {
 		// TODO Auto-generated method stub
 			
 		setBalance(getBalance() - amount - bankTransferFee);

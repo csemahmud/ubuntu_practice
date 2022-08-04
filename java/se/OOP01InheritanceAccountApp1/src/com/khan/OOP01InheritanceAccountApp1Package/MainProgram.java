@@ -67,7 +67,7 @@ public class MainProgram {
 			}
 
 			@Override
-			public String withdraw(double amount) {
+			public final String withdraw(double amount) {
 				if(getBalance() - amount >= 10_000) {
 					
 					return "\n\tWithdrawn " + amount + " Yen Successfully .";
@@ -78,7 +78,7 @@ public class MainProgram {
 			}
 
 			@Override
-			public String bankTransfer(String transferToAccNo, double amount) {
+			public final String bankTransfer(String transferToAccNo, double amount) {
 				// TODO Auto-generated method stub
 				
 				if(getBalance() - amount - bankTransferFee >= 10_000) {
@@ -93,7 +93,7 @@ public class MainProgram {
 			}
 
 			@Override
-			public String deposit(double amount) {
+			public final String deposit(double amount) {
 				// TODO Auto-generated method stub
 				
 				balance += amount;
@@ -101,7 +101,7 @@ public class MainProgram {
 			}
 
 			@Override
-			public String toString() {
+			public final String toString() {
 				StringBuilder builder = new StringBuilder();
 				builder.append("\n\tAccount [accNo = ").append(accNo).append(", balance = ").append(balance).append(" Yen Only]");
 				return builder.toString();

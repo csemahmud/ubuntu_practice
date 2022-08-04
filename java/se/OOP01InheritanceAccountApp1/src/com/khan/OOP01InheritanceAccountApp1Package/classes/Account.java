@@ -72,7 +72,7 @@ public abstract class Account implements IAccount {
 	public abstract String bankTransfer(String transferToAccNo, double amount);
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("\n\tAccount [accNo = ").append(accNo).append(", balance = ").append(balance).append(" Yen Only]");
 		return builder.toString();
