@@ -1,4 +1,4 @@
-package com.khan.DemoGuiApp02;
+package com.khan.DemoMySQLApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class DemoGuiApp02Application {
+public class DemoMySqlAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoGuiApp02Application.class, args);
+		SpringApplication.run(DemoMySqlAppApplication.class, args);
 	}
 
 }
