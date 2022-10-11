@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.type.TrueFalseType;
-
 /**
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
