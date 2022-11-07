@@ -11,5 +11,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo_angular';
+  title = "Kh@n's Spring Boot + Angular => @Get Method";
 }
