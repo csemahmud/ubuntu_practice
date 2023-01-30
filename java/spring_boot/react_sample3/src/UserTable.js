@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+
 const UserTable = () => {
   const [users, setUsers] = useState([]);
 
@@ -36,7 +37,7 @@ const UserTable = () => {
               <td>{user.domain}</td>
               <td>{user.age}</td>
               <td>{user.experience}</td>
-              <td>{user.salarynpm}</td>
+              <td>{user.salary}</td>
             </tr>
           ))}
         </tbody>
