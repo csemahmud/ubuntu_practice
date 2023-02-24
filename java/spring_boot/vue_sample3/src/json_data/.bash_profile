@@ -1,0 +1,1 @@
+npx json-server --watch list.json --port 3100

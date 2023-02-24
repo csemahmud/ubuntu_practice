@@ -1,0 +1,49 @@
+ {   
+    "users": [
+        {
+            "id": 6,
+            "name": "ASD",
+            "email": "info@e-resident.jp",
+            "domain": "Full Stack",
+            "age": 0,
+            "experience": 0,
+            "salary": 0.0
+        },
+        {
+            "id": 9,
+            "name": "Khan3",
+            "email": "info@e-resident3.jp",
+            "domain": "Full Stack",
+            "age": 10,
+            "experience": 10,
+            "salary": 10.0
+        },
+        {
+            "id": 13,
+            "name": "Khan4",
+            "email": "cse.mahmudul4@gmail.com",
+            "domain": "",
+            "age": 10,
+            "experience": 10,
+            "salary": 10.0
+        },
+        {
+            "id": 18,
+            "name": "Khan",
+            "email": "cse.mahmudul@gmail.com",
+            "domain": "Full Stack",
+            "age": 0,
+            "experience": 0,
+            "salary": 0.0
+        },
+        {
+            "id": 20,
+            "name": "list-json20",
+            "email": "list-josn20@gmail.com",
+            "domain": "Full Stack",
+            "age": 20,
+            "experience": 20,
+            "salary": 20.0
+        }
+    ]
+}
