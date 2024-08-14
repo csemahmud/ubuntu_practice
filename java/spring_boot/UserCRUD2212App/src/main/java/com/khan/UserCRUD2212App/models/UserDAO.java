@@ -22,9 +22,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tbl_user")
+@Table(name = "tbl_user")
 public class UserDAO {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -148,11 +148,10 @@ public class UserDAO {
 		return builder.toString();
 	}
 
-	/**
-	 * 
-	 */
-	public UserDAO() {
-		// TODO Auto-generated constructor stub
-	}
+	/*	*//**
+			* 
+			*//*
+				 * public UserDAO() { // TODO Auto-generated constructor stub }
+				 */
 
 }
