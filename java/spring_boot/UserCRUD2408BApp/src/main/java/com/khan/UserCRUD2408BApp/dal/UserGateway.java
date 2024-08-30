@@ -57,16 +57,6 @@ public class UserGateway {
 	}
 	
 	public UserDAO updateUser(UserDAO user) {
-		UserDAO existingUser = userRepository.findById(user.getId()).orElse(null);
-		if(existingUser != null) {
-			existingUser.setName(user.getName());
-			existingUser.setEmail(user.getEmail());
-			existingUser.setName(user.getName());
-			existingUser.setDomain(user.getDomain());
-			existingUser.setAge(user.getAge());
-			existingUser.setExperience(user.getExperience());
-			existingUser.setSalary(user.getSalary());
-		}
-		return userRepository.save(existingUser);
+		return userRepository.save(user);
 	}
 }
