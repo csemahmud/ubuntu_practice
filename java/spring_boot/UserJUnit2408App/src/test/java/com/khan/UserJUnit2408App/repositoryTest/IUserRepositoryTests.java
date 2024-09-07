@@ -6,6 +6,7 @@ package com.khan.UserJUnit2408App.repositoryTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,7 +79,17 @@ public class IUserRepositoryTests {
 	@Test
 	public void getUserTest() {
 		
-		UserDAO user = userRepository.findById(1).get();
+		UserDAO user = null;
+		
+		try {
+			
+			user = userRepository.findById(1).get();
+			
+		} catch (NoSuchElementException ex) {
+			// TODO Auto-generated catch block
+			
+			ex.printStackTrace();
+		}
 		
 		if(user == null) {
 			
