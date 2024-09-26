@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UserCRUD2408BApp" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.khan.UserCRUD2408BApp.UserCrud2408BAppApplication" />
+    <module name="UserCRUD2408BApp" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UserCRUD2408BApp" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JDBC2408ApartmentLayeredApp" type="Application" factoryName="Application">
+    <module name="se" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JDBC2408ApartmentLayeredApp" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

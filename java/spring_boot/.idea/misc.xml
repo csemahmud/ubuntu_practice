@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/UserJUnit2408App/pom.xml" />
+        <option value="$PROJECT_DIR$/UserJUnit2409App/pom.xml" />
+        <option value="$PROJECT_DIR$/UserCRUD2408BApp/pom.xml" />
+        <option value="$PROJECT_DIR$/UserJUnit2303App/pom.xml" />
+        <option value="$PROJECT_DIR$/UserCRUDApp/pom.xml" />
+        <option value="$PROJECT_DIR$/UserCRUD2212App/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoCRUDApp/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoGuiApp/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoGuiApp02/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoMySQLApp/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21_PREVIEW" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

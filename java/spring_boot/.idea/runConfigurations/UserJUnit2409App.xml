@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UserJUnit2409App" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.khan.UserJUnit2409App.UserJUnit2409AppApplication" />
+    <module name="UserJUnit2409App" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UserJUnit2409App" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

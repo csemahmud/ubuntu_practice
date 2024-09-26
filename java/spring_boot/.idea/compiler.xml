@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="UserCRUD2408BApp" />
+        <module name="UserCRUD2212App" />
+        <module name="DemoMySQLApp" />
+        <module name="DemoGuiApp" />
+        <module name="DemoGuiApp02" />
+        <module name="UserCRUDApp" />
+        <module name="UserJUnit2408App" />
+        <module name="DemoCRUDApp" />
+        <module name="UserJUnit2409App" />
+        <module name="UserJUnit2303App" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="DemoCRUDApp" options="-parameters" />
+      <module name="DemoGuiApp" options="-parameters" />
+      <module name="DemoGuiApp02" options="-parameters" />
+      <module name="DemoMySQLApp" options="-parameters" />
+      <module name="UserCRUD2212App" options="-parameters" />
+      <module name="UserCRUD2408BApp" options="-parameters" />
+      <module name="UserCRUDApp" options="-parameters" />
+      <module name="UserJUnit2303App" options="-parameters" />
+      <module name="UserJUnit2408App" options="-parameters" />
+      <module name="UserJUnit2409App" options="-parameters" />
+    </option>
+  </component>
+</project>
