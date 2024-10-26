@@ -21,6 +21,7 @@
     "package-lock.json": "^1.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "usercrud-angular": "file:",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

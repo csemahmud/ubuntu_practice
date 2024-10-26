@@ -1,0 +1,113 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:9191",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "DemoCrudAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.DemoCRUDApp.DemoCrudAppApplication",
+            "projectName": "DemoCRUDApp"
+        },
+        {
+            "type": "java",
+            "name": "DemoGuiApp02Application",
+            "request": "launch",
+            "mainClass": "com.khan.DemoGuiApp02.DemoGuiApp02Application",
+            "projectName": "DemoGuiApp02"
+        },
+        {
+            "type": "java",
+            "name": "DemoGuiAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.DemoGuiApp.DemoGuiAppApplication",
+            "projectName": "DemoGuiApp"
+        },
+        {
+            "type": "java",
+            "name": "DemoMySqlAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.DemoMySQLApp.DemoMySqlAppApplication",
+            "projectName": "DemoMySQLApp"
+        },
+        {
+            "type": "java",
+            "name": "UserCrud2212AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserCRUD2212App.UserCrud2212AppApplication",
+            "projectName": "UserCRUD2212App"
+        },
+        {
+            "type": "java",
+            "name": "TestUserCrud2408BAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserCRUD2408BApp.TestUserCrud2408BAppApplication",
+            "projectName": "UserCRUD2408BApp"
+        },
+        {
+            "type": "java",
+            "name": "UserCrud2408BAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserCRUD2408BApp.UserCrud2408BAppApplication",
+            "projectName": "UserCRUD2408BApp"
+        },
+        {
+            "type": "java",
+            "name": "UserCrudAppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserCRUDApp.UserCrudAppApplication",
+            "projectName": "UserCRUDApp"
+        },
+        {
+            "type": "java",
+            "name": "UserJUnit2303AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserJUnit2303App.UserJUnit2303AppApplication",
+            "projectName": "UserJUnit2303App"
+        },
+        {
+            "type": "java",
+            "name": "TestUserJUnit2408AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserJUnit2408App.TestUserJUnit2408AppApplication",
+            "projectName": "UserJUnit2408App"
+        },
+        {
+            "type": "java",
+            "name": "UserJUnit2408AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserJUnit2408App.UserJUnit2408AppApplication",
+            "projectName": "UserJUnit2408App"
+        },
+        {
+            "type": "java",
+            "name": "TestUserJUnit2409AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserJUnit2409App.TestUserJUnit2409AppApplication",
+            "projectName": "UserJUnit2409App"
+        },
+        {
+            "type": "java",
+            "name": "UserJUnit2409AppApplication",
+            "request": "launch",
+            "mainClass": "com.khan.UserJUnit2409App.UserJUnit2409AppApplication",
+            "projectName": "UserJUnit2409App"
+        }
+    ]
+}
