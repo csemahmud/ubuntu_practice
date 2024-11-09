@@ -1,0 +1,29 @@
+form {
+    text-align: left;
+}
+
+.card {
+    padding: 2em;
+}
+
+.form-container {
+    text-align: center;
+}
+
+input[type = "text"],
+input[type = "email"],
+input[type = "number"]{
+    height: 40px;
+    padding-left: 25px;
+    margin: 5px;
+}
+
+input[type = "button"],
+input[type = "submit"]{
+    height: 45px;
+    margin-left: 5px;
+}
+
+.required {
+    color: red;
+}

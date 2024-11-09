@@ -1,0 +1,9 @@
+.article-footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: lightblue;
+    text-align: center;
+    color: lightgoldenrodyellow;
+}
