@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { updateUser, createUser, getUserById } from '../services/UserService'
+import ExcelDropdown from './ExcelDropdown'
 
 const UserComponent = () => {
 
@@ -170,15 +171,7 @@ const UserComponent = () => {
                         </div>
                         <div className='form-group mb-2'>
                             <label>Domain :  </label>
-                            <input
-                                type='text'
-                                placeholder='Enter Domain'
-                                name='domain'
-                                value={domain}
-                                className='form-control'
-                                onChange={(e) => setDomain(e.target.value)}
-                            > 
-                            </input>
+                            <ExcelDropdown domain={domain}  setDomain={setDomain} />
                         </div>
                         <div className='form-group mb-2'>
                             <label>Age :  </label>
