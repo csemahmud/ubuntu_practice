@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeaderComponent from './components/HeaderComponent';
 import ImageCapture from './components/ImageCapture';
 import ImageGallery from './components/ImageGallery';
+import FooterComponent from './components/FooterComponent';
 
 const App: React.FC = () => {
   const [count, setCount] = useState(0)
@@ -43,6 +44,7 @@ const App: React.FC = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <FooterComponent/>
     </>
   )
 }
