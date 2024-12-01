@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/khangym_vitereactts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/khangym_vitereactts/node_modules/gym-typescript" vcs="Git" />
   </component>
 </project>
