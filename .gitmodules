@@ -4,6 +4,6 @@
 [submodule "java/spring_boot/usercrud2412_vitereactts"]
 	path = java/spring_boot/usercrud2412_vitereactts
 	url = https://github.com/csemahmud/usercrud2412_vitereactts
-[submodule "webgl_vitereactts"]
-	path = webgl_vitereactts
+[submodule "java/spring_boot/webgl_vitereactts"]
+	path = java/spring_boot/webgl_vitereactts
 	url = https://github.com/csemahmud/webgl_vitereactts
