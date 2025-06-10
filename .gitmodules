@@ -7,3 +7,6 @@
 [submodule "java/spring_boot/webgl_vitereactts"]
 	path = java/spring_boot/webgl_vitereactts
 	url = https://github.com/csemahmud/webgl_vitereactts
+[submodule "java/spring_boot/khans_kanji_english_practice"]
+	path = java/spring_boot/khans_kanji_english_practice
+	url = https://github.com/csemahmud/khans_kanji_english_practice
