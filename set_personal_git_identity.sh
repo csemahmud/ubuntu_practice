@@ -5,7 +5,7 @@ PERSONAL_NAME="csemahmud"
 PERSONAL_EMAIL="lone.wolf.mahmud@gmail.com"
 PERSONAL_GITHUB_HOST="github.com-personal"
 PERSONAL_SSH_KEY="$HOME/.ssh/id_ed25519_github_personal"
-REPO_PATH="$HOME/Documents/Work/ubuntu_practice"
+REPO_PATH="/d/Work/ubuntu_practice"
 GITHUB_REPO_PATH="csemahmud/ubuntu_practice.git"
 
 echo "🛠️ Starting personal Git configuration..."
