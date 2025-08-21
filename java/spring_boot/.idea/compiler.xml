@@ -10,6 +10,7 @@
         <module name="UserCRUD2408BApp" />
         <module name="UserCRUD2212App" />
         <module name="DemoMySQLApp" />
+        <module name="LogInMySQL2508App" />
         <module name="DemoGuiApp" />
         <module name="DemoGuiApp02" />
         <module name="UserCRUDApp" />
@@ -26,6 +27,7 @@
       <module name="DemoGuiApp" options="-parameters" />
       <module name="DemoGuiApp02" options="-parameters" />
       <module name="DemoMySQLApp" options="-parameters" />
+      <module name="LogInMySQL2508App" options="-parameters" />
       <module name="UserCRUD2212App" options="-parameters" />
       <module name="UserCRUD2408BApp" options="-parameters" />
       <module name="UserCRUDApp" options="-parameters" />
