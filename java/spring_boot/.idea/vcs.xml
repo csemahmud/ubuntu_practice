@@ -6,6 +6,5 @@
     <mapping directory="$PROJECT_DIR$/khans_kanji_english_practice" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/usercrud2412_vitereactts" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/webgl_vitereactts" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/webgl_vitereactts/node_modules/gym-typescript" vcs="Git" />
   </component>
 </project>

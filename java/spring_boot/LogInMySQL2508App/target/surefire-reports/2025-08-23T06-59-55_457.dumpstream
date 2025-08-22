@@ -1,0 +1,5 @@
+# Created at 2025-08-23T06:59:55.592
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
