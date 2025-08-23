@@ -18,7 +18,7 @@
 
     <properties>
         <java.version>23</java.version>
-    	<lombok.version>1.18.38</lombok.version>
+    	<lombok.version>1.18.38</lombok.version> <!-- check latest -->
     </properties>
 
     <dependencies>
@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId> <!-- check latest -->
+            <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
             <optional>true</optional>
