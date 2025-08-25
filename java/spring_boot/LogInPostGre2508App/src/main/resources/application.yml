@@ -1,0 +1,21 @@
+#spring:
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/db_LogInPostGre2508App?useSSL=false
+#    username: postgres
+#    password: 123456
+#  jpa:
+#    properties:
+#      hibernate:
+#        jdbc:
+#          time_zone: Asia/Tokyo
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      ddl-auto: update
+#    show-sql: true
+# flyway:
+#   enabled: false
+#server:
+#    port: 9191

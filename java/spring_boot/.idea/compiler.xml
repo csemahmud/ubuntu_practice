@@ -24,8 +24,18 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="LogInMySQL2508App" />
+      </profile>
+      <profile name="Annotation profile for LogInPostGre2508App" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="LogInPostGre2508App" />
       </profile>
     </annotationProcessing>
   </component>
@@ -36,6 +46,7 @@
       <module name="DemoGuiApp02" options="-parameters" />
       <module name="DemoMySQLApp" options="-parameters" />
       <module name="LogInMySQL2508App" options="-parameters" />
+      <module name="LogInPostGre2508App" options="-parameters" />
       <module name="UserCRUD2212App" options="-parameters" />
       <module name="UserCRUD2408BApp" options="-parameters" />
       <module name="UserCRUDApp" options="-parameters" />

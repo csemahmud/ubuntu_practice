@@ -1,0 +1,20 @@
+package com.khan.LogInPostGre2508App;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @author KHAN MAHMUDUL HASAN CSE BD JP
+ * @LinkedIn https://www.linkedin.com/in/mahmudulcse/
+ * @GitHub https://github.com/csemahmud
+ * @Portfolio https://csemahmud.github.io/khans_kanji_english_practice/
+ * @since 2025 - 08 - 21
+ * @summary
+ * @Functionality SpringApplication.run
+ */
+@SpringBootApplication
+public class LogInPostGre2508AppApplication {
+    public static void main(String[] args) {
+    	SpringApplication.run(LogInPostGre2508AppApplication.class, args);
+    }
+}
