@@ -1,5 +1,7 @@
 package com.khan.LogInPostGre2508App.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -15,6 +17,7 @@ import lombok.*;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "tbl_category")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CategoryDAO {
 
     @Id
