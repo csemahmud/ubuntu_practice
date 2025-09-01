@@ -69,8 +69,8 @@ public class UserDAO {
     @Column
     private Integer experience;
 
-    @DecimalMin("0.0")
-    @Column(precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true)
+    @Column(precision = 15, scale = 2, nullable = true)
     private BigDecimal salary;
 
     // ------------------ Equals and HashCode ------------------
@@ -94,7 +94,7 @@ public class UserDAO {
         builder.append("UserDAO [id=").append(id)
                .append(", name=").append(name);
 
-        if (category != null && category.getId() != 0) {
+        if (category != null && category.getId() != null) {
             builder.append(", categoryId=").append(category.getId());
         }
 

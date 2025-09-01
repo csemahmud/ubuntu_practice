@@ -4,96 +4,86 @@
 package com.khan.LogInMySQL2508App.bll;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.khan.LogInMySQL2508App.dal.CategoryGateway;
 import com.khan.LogInMySQL2508App.models.CategoryDAO;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 /**
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
-@SpringBootApplication
 @RestController
+@RequestMapping("/api/categories")
 @CrossOrigin(origins = "*")
 public class CategoryManager {
 
     @Autowired
     private CategoryGateway aCategoryGateway;
 
-    @PostMapping("/addCategory")
-    public String addCategory(@RequestBody CategoryDAO category) {
+    @PostMapping
+    public ResponseEntity<?> addCategory(@RequestBody CategoryDAO category) {
         try {
-            return aCategoryGateway.saveCategory(category)
-                    + " has been SAVED successfully";
+            CategoryDAO saved = aCategoryGateway.saveCategory(category);
+            return ResponseEntity.ok(saved);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return ex.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
         }
     }
 
-    @PostMapping("/addCategories")
-    public String addCategories(@RequestBody List<CategoryDAO> categoryList) {
+    @PostMapping("/bulk")
+    public ResponseEntity<?> addCategories(@RequestBody List<CategoryDAO> categoryList) {
         try {
-            return aCategoryGateway.saveCategories(categoryList)
-                    + " have been SAVED successfully";
+            List<CategoryDAO> saved = aCategoryGateway.saveCategories(categoryList);
+            return ResponseEntity.ok(saved);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return ex.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
         }
     }
 
-    @GetMapping("/categories")
-    public List<CategoryDAO> findAllCategories(){
+    @GetMapping
+    public List<CategoryDAO> findAllCategories() {
         return aCategoryGateway.getAllCategories();
     }
 
-    @GetMapping("/category/{id}")
-    public CategoryDAO findCategoryById(@PathVariable int id){
+    @GetMapping("/{id}")
+    public CategoryDAO findCategoryById(@PathVariable int id) {
         return aCategoryGateway.getCategoryById(id);
     }
 
-    @GetMapping("/categoryByName/{name}")
-    public CategoryDAO findCategoryByName(@PathVariable String name){
+    @GetMapping("/name/{name}")
+    public CategoryDAO findCategoryByName(@PathVariable String name) {
         return aCategoryGateway.getCategoryByName(name);
     }
 
-    @PutMapping("/updateCategory")
-    public String updateCategory(@RequestBody CategoryDAO category) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCategory(@PathVariable int id, @RequestBody CategoryDAO category) {
         try {
-            return aCategoryGateway.updateCategory(category)
-                    + " has been UPDATED successfully";
+            category.setId(id);
+            CategoryDAO updated = aCategoryGateway.updateCategory(category);
+            return ResponseEntity.ok(updated);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return ex.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
         }
     }
 
-    @DeleteMapping("/deleteCategory/{id}")
-    public String deleteCategory(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable int id) {
         try {
-            return aCategoryGateway.deleteCategory(id)
-                    + " has been DELETED successfully";
+            aCategoryGateway.deleteCategory(id);
+            return ResponseEntity.ok(Map.of("message", "Category with ID " + id + " deleted successfully"));
         } catch (Exception ex) {
-            ex.printStackTrace();
-            return ex.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(Map.of("error", ex.getMessage()));
         }
     }
-
 }

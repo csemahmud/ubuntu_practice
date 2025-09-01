@@ -4,111 +4,123 @@
 package com.khan.LogInMySQL2508App.bll;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.khan.LogInMySQL2508App.dal.UserGateway;
 import com.khan.LogInMySQL2508App.models.UserDAO;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 /**
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  *
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
-@SpringBootApplication
 @RestController
+@RequestMapping("/api/users")
 @CrossOrigin(origins = "*")
 public class UserManager {
-	
-	@Autowired
-	private UserGateway aUserGateway;
-	
-	@PostMapping("/addUser")
-	public String addUser(@RequestBody UserDAO user) {
-		try {
-			return aUserGateway.saveUser(user)
-					+ " has been SAVED successfully";
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-			return ex.getMessage();
-		}
-	}
-	
-	@PostMapping("/addUsers")
-	public String addUsers(@RequestBody List<UserDAO> userList) {
-		try {
-			return aUserGateway.saveUsers(userList)
-					+ " have been SAVED successfully";
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-			return ex.getMessage();
-		}
-	}
-	
-	@GetMapping("/users")
-	public List<UserDAO> findAllUsers(){
-		return aUserGateway.getAllUsers();
-	}
-	
-	@GetMapping("/user/{id}")
-	public UserDAO findUserById(@PathVariable int id){
-		return aUserGateway.getUserById(id);
-	}
-	
-	@GetMapping("/userByName/{name}")
-	public UserDAO findUserByName(@PathVariable String name){
-		return aUserGateway.getUserByName(name);
-	}
-	
-	@GetMapping("/userByEmail/{email}")
-	public UserDAO findUserByEmail(@PathVariable String email){
-		return aUserGateway.getUserByEmail(email);
-	}
-	
-	// New endpoint: Get users by category ID
-    @GetMapping("/usersByCategory/{categoryId}")
-    public List<UserDAO> findUsersByCategoryId(@PathVariable Integer categoryId) {
-        return aUserGateway.getUsersByCategoryId(categoryId);
+
+    @Autowired
+    private UserGateway aUserGateway;
+
+    // CREATE single user
+    @PostMapping
+    public ResponseEntity<?> addUser(@RequestBody UserDAO user) {
+        try {
+            UserDAO saved = aUserGateway.saveUser(user);
+            return ResponseEntity.ok(saved);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
+        }
     }
-	
-	@PutMapping("/update")
-	public String updateUser(@RequestBody UserDAO user) {
-		try {
-			return aUserGateway.updateUser(user)
-					+ " has been UPDATED successfully";
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-			return ex.getMessage();
-		}
-	}
-	
-	@DeleteMapping("/delete/{id}")
-	public String deleteUser(@PathVariable int id) {
-		try {
-			return aUserGateway.deleteUser(id)
-					+ " has been DELETED successfully";
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-			return ex.getMessage();
-		}
-	}
-	
+
+    // CREATE multiple users
+    @PostMapping("/bulk")
+    public ResponseEntity<?> addUsers(@RequestBody List<UserDAO> userList) {
+        try {
+            List<UserDAO> saved = aUserGateway.saveUsers(userList);
+            return ResponseEntity.ok(saved);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
+        }
+    }
+
+    // READ all users
+    @GetMapping
+    public ResponseEntity<List<UserDAO>> findAllUsers() {
+        return ResponseEntity.ok(aUserGateway.getAllUsers());
+    }
+
+    // READ user by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findUserById(@PathVariable int id) {
+        UserDAO user = aUserGateway.getUserById(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("User with ID " + id + " not found");
+        }
+    }
+
+    // READ user by name
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> findUserByName(@PathVariable String name) {
+        UserDAO user = aUserGateway.getUserByName(name);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("User with name '" + name + "' not found");
+        }
+    }
+
+    // READ user by email
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> findUserByEmail(@PathVariable String email) {
+        UserDAO user = aUserGateway.getUserByEmail(email);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("User with email '" + email + "' not found");
+        }
+    }
+
+    // READ users by category ID
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<UserDAO>> findUsersByCategoryId(@PathVariable Integer categoryId) {
+        return ResponseEntity.ok(aUserGateway.getUsersByCategoryId(categoryId));
+    }
+
+    // UPDATE user
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDAO user) {
+        try {
+            user.setId(id);
+            UserDAO updated = aUserGateway.updateUser(user);
+            return ResponseEntity.ok(updated);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error: " + ex.getMessage());
+        }
+    }
+
+    // DELETE user
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        try {
+            aUserGateway.deleteUser(id);
+            return ResponseEntity.ok(Map.of("message", "User with ID " + id + " deleted successfully"));
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body(Map.of("error", ex.getMessage()));
+        }
+    }
 }
