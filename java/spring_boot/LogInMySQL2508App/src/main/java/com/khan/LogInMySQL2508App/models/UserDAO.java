@@ -41,13 +41,11 @@ public class UserDAO {
     @Column(name = "email", length = 100, unique = true, nullable = false)
     private String email;
 
-    @NotBlank
-    @Size(max = 100)
     @Column(name = "password", length = 100, nullable = false)
-    private String hashedPassword;
+    private String hashedPassword; // will be set via UserMapper
 
     @Transient
-    private String rawPassword; // for input only, not stored
+    private String rawPassword; // input only, not stored
 
     @Size(max = 255)
     @Column(name = "image_path", length = 255)
@@ -92,13 +90,9 @@ public class UserDAO {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("UserDAO [id=").append(id)
-               .append(", name=").append(name);
-
-        if (category != null && category.getId() != null) {
-            builder.append(", categoryId=").append(category.getId());
-        }
-
-        builder.append(", email=").append(email)
+               .append(", name=").append(name)
+               .append(", categoryId=").append(category != null ? category.getId() : null)
+               .append(", email=").append(email)
                .append(", imagePath=").append(imagePath)
                .append(", imageName=").append(imageName)
                .append(", domain=").append(domain)
@@ -106,20 +100,14 @@ public class UserDAO {
                .append(", experience=").append(experience)
                .append(", salary=").append(salary)
                .append("]");
-
         return builder.toString();
     }
 
     // ------------------ Helper ------------------
     /**
-     * Sets raw password and hashes it.
-     * Example: use BCrypt or Argon2 in service layer.
+     * Sets raw password (not persisted). Hashing is done in UserMapper.
      */
     public void setRawPassword(String rawPassword) {
         this.rawPassword = rawPassword;
-        if (rawPassword != null && !rawPassword.isBlank()) {
-            // hash using your preferred method, e.g., BCrypt
-            // this.hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
-        }
     }
 }

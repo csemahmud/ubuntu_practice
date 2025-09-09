@@ -4,6 +4,8 @@ C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508A
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\dal\CategoryGateway.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\dal\package-info.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\dal\UserGateway.java
+C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\dto\package-info.java
+C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\dto\UserDTO.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\LogInPostGre2508AppApplication.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\models\CategoryDAO.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\models\package-info.java
@@ -13,4 +15,5 @@ C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508A
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\repository\package-info.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\util\CategoryValidator.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\util\package-info.java
+C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\util\UserMapper.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInPostGre2508App\src\main\java\com\khan\LogInPostGre2508App\util\UserValidator.java

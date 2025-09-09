@@ -1,13 +1,16 @@
 package com.khan.LogInPostGre2508App.util;
 
+import java.util.Optional;
+
+import com.khan.LogInPostGre2508App.dto.UserDTO;
 import com.khan.LogInPostGre2508App.models.UserDAO;
 import com.khan.LogInPostGre2508App.repository.IUserRepository;
 
 /**
- * @author KHAN MAHMUDUL HASAN CSE BD JP
- *
+ * UserValidator: Validates business rules for UserDTO
+ * Uses repository to check uniqueness and deletion constraints
+ * Author: KHAN MAHMUDUL HASAN CSE BD JP
  */
-
 public class UserValidator {
 
     private final IUserRepository userRepository;
@@ -16,40 +19,54 @@ public class UserValidator {
         this.userRepository = userRepository;
     }
 
+    // ------------------ Uniqueness Checks ------------------
+
     /**
-     * Validate uniqueness of user name
+     * Validate that the user name is unique (ignoring current entity)
      */
-    public void validateUniqueName(UserDAO user) {
-        UserDAO existing = userRepository.findByName(user.getName());
-        if (existing != null && !existing.getId().equals(user.getId())) {
-            throw new IllegalArgumentException("User name '" + user.getName() + "' already exists.");
+    public void validateUniqueName(UserDTO userDTO) {
+        Optional<UserDAO> existing = userRepository.findByName(userDTO.getName());
+        if (existing.isPresent() && !existing.get().getId().equals(userDTO.getId())) {
+            throw new IllegalArgumentException(
+                "User name '" + userDTO.getName() + "' already exists."
+            );
         }
     }
 
     /**
-     * Validate uniqueness of email
+     * Validate that the email is unique (ignoring current entity)
      */
-    public void validateUniqueEmail(UserDAO user) {
-        UserDAO existing = userRepository.findByEmail(user.getEmail());
-        if (existing != null && !existing.getId().equals(user.getId())) {
-            throw new IllegalArgumentException("Email '" + user.getEmail() + "' is already in use.");
+    public void validateUniqueEmail(UserDTO userDTO) {
+        Optional<UserDAO> existing = userRepository.findByEmail(userDTO.getEmail());
+        if (existing.isPresent() && !existing.get().getId().equals(userDTO.getId())) {
+            throw new IllegalArgumentException(
+                "Email '" + userDTO.getEmail() + "' is already in use."
+            );
         }
     }
 
+    // ------------------ Deletion Check ------------------
+
     /**
-     * Validate user deletion (additional rules can be added here)
+     * Validate user deletion
      */
-    public void validateDelete(UserDAO user) {
-        if (user == null) {
+    public void validateDelete(UserDTO userDTO) {
+        if (userDTO == null || userDTO.getId() == null) {
             throw new IllegalArgumentException("User not found.");
         }
     }
 
+    // ------------------ Save / Update Validation ------------------
+
     /**
-     * Validate before saving or updating a user
+     * Validate before saving or updating a user DTO
+     * Checks for uniqueness of name and email
      */
-    public void validateSaveOrUpdate(UserDAO user) {
-        validateUniqueName(user);
-        validateUniqueEmail(user);
+    public void validateSaveOrUpdate(UserDTO userDTO) {
+        if (userDTO == null) {
+            throw new IllegalArgumentException("User DTO cannot be null.");
+        }
+        validateUniqueName(userDTO);
+        validateUniqueEmail(userDTO);
     }
 }

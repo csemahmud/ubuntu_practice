@@ -67,6 +67,11 @@
 		    <artifactId>h2</artifactId>
 		    <scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-crypto</artifactId>
+		    <version>6.2.0</version> <!-- or your Spring Boot compatible version -->
+		</dependency>
     </dependencies>
 
     <build>

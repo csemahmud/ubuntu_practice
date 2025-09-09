@@ -1,123 +1,117 @@
-/**
- * 
- */
 package com.khan.LogInMySQL2508App.bll;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.khan.LogInMySQL2508App.dal.UserGateway;
-import com.khan.LogInMySQL2508App.models.UserDAO;
+import com.khan.LogInMySQL2508App.dto.UserDTO;
 
 /**
- * @author KHAN MAHMUDUL HASAN CSE BD JP
- *
+ * UserManager: REST API layer using DTOs
+ * Maps incoming DTOs to entities via UserMapper and delegates to UserGateway
+ * Author: KHAN MAHMUDUL HASAN CSE BD JP
  */
-
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "*")
 public class UserManager {
 
     @Autowired
-    private UserGateway aUserGateway;
+    private UserGateway userGateway;
 
-    // CREATE single user
+    // ------------------ CREATE ------------------
     @PostMapping
-    public ResponseEntity<?> addUser(@RequestBody UserDAO user) {
+    public ResponseEntity<?> addUser(@RequestBody UserDTO userDTO) {
         try {
-            UserDAO saved = aUserGateway.saveUser(user);
-            return ResponseEntity.ok(saved);
+            UserDTO savedDTO = userGateway.saveUser(userDTO);
+            return ResponseEntity.ok(savedDTO);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error: " + ex.getMessage());
+                                 .body(Map.of("error", ex.getMessage()));
         }
     }
 
-    // CREATE multiple users
     @PostMapping("/bulk")
-    public ResponseEntity<?> addUsers(@RequestBody List<UserDAO> userList) {
+    public ResponseEntity<?> addUsers(@RequestBody List<UserDTO> userDTOList) {
         try {
-            List<UserDAO> saved = aUserGateway.saveUsers(userList);
-            return ResponseEntity.ok(saved);
+            List<UserDTO> savedDTOs = userGateway.saveUsers(userDTOList);
+            return ResponseEntity.ok(savedDTOs);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error: " + ex.getMessage());
+                                 .body(Map.of("error", ex.getMessage()));
         }
     }
 
-    // READ all users
+    // ------------------ READ ------------------
     @GetMapping
-    public ResponseEntity<List<UserDAO>> findAllUsers() {
-        return ResponseEntity.ok(aUserGateway.getAllUsers());
+    public ResponseEntity<List<UserDTO>> findAllUsers() {
+        return ResponseEntity.ok(userGateway.getAllUsers());
     }
 
-    // READ user by ID
     @GetMapping("/{id}")
     public ResponseEntity<?> findUserById(@PathVariable int id) {
-        UserDAO user = aUserGateway.getUserById(id);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        UserDTO dto = userGateway.getUserById(id);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("User with ID " + id + " not found");
+                                 .body(Map.of("error", "User with ID " + id + " not found"));
         }
     }
 
-    // READ user by name
     @GetMapping("/name/{name}")
     public ResponseEntity<?> findUserByName(@PathVariable String name) {
-        UserDAO user = aUserGateway.getUserByName(name);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        UserDTO dto = userGateway.getUserByName(name);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("User with name '" + name + "' not found");
+                                 .body(Map.of("error", "User with name '" + name + "' not found"));
         }
     }
 
-    // READ user by email
     @GetMapping("/email/{email}")
     public ResponseEntity<?> findUserByEmail(@PathVariable String email) {
-        UserDAO user = aUserGateway.getUserByEmail(email);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        UserDTO dto = userGateway.getUserByEmail(email);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("User with email '" + email + "' not found");
+                                 .body(Map.of("error", "User with email '" + email + "' not found"));
         }
     }
 
-    // READ users by category ID
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<UserDAO>> findUsersByCategoryId(@PathVariable Integer categoryId) {
-        return ResponseEntity.ok(aUserGateway.getUsersByCategoryId(categoryId));
+    public ResponseEntity<List<UserDTO>> findUsersByCategoryId(@PathVariable Integer categoryId) {
+        return ResponseEntity.ok(userGateway.getUsersByCategoryId(categoryId));
     }
 
-    // UPDATE user
+    // ------------------ UPDATE ------------------
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDAO user) {
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
         try {
-            user.setId(id);
-            UserDAO updated = aUserGateway.updateUser(user);
-            return ResponseEntity.ok(updated);
+            userDTO.setId(id);
+            UserDTO updatedDTO = userGateway.updateUser(userDTO);
+            return ResponseEntity.ok(updatedDTO);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error: " + ex.getMessage());
+                                 .body(Map.of("error", ex.getMessage()));
         }
     }
 
-    // DELETE user
+    // ------------------ DELETE ------------------
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable int id) {
         try {
-            aUserGateway.deleteUser(id);
-            return ResponseEntity.ok(Map.of("message", "User with ID " + id + " deleted successfully"));
+            UserDTO deletedDTO = userGateway.deleteUser(id);
+            return ResponseEntity.ok(Map.of(
+                    "message", "User with ID " + id + " deleted successfully",
+                    "user", deletedDTO
+            ));
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body(Map.of("error", ex.getMessage()));
