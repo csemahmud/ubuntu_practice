@@ -4,6 +4,7 @@ C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dal\CategoryGateway.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dal\package-info.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dal\UserGateway.java
+C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dto\CategoryDTO.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dto\package-info.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\dto\UserDTO.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\LogInMySQL2508AppApplication.java
@@ -13,6 +14,7 @@ C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\repository\ICategoryRepository.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\repository\IUserRepository.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\repository\package-info.java
+C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\util\CategoryMapper.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\util\CategoryValidator.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\util\package-info.java
 C:\Users\itage\Documents\Work\ubuntu_practice\java\spring_boot\LogInMySQL2508App\src\main\java\com\khan\LogInMySQL2508App\util\UserMapper.java

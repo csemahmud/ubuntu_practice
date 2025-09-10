@@ -9,7 +9,7 @@ import com.khan.LogInMySQL2508App.repository.IUserRepository;
 /**
  * UserValidator: Validates business rules for UserDTO
  * Uses repository to check uniqueness and deletion constraints
- * Author: KHAN MAHMUDUL HASAN CSE BD JP
+ * @author KHAN MAHMUDUL HASAN CSE BD JP
  */
 public class UserValidator {
 

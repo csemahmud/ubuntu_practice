@@ -3,6 +3,9 @@
  */
 package com.khan.LogInMySQL2508App.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +20,15 @@ import com.khan.LogInMySQL2508App.models.CategoryDAO;
 public interface ICategoryRepository extends JpaRepository<CategoryDAO, Integer> {
 
     // Case-sensitive search
-    CategoryDAO findByName(String name);
+	Optional<CategoryDAO> findByName(String name);
 
     // Case-insensitive search
-    CategoryDAO findByNameIgnoreCase(String name);
+	Optional<CategoryDAO> findByNameIgnoreCase(String name);
+	
+	// Fetch all categories for a given name ignoring case
+	List<CategoryDAO> findAllByNameContainingIgnoreCase(String keyword);
+	
+	// Optional: check existence for validation
+	boolean existsByName(String name);
+	boolean existsByNameIgnoreCase(String name);
 }

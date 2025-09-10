@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 /**
  * UserGateway: Handles CRUD operations for User using DTOs
  * Validates business rules and maps between DTO and DAO
- * Author: KHAN MAHMUDUL HASAN CSE BD JP
+ * @author KHAN MAHMUDUL HASAN CSE BD JP
  */
 @AllArgsConstructor
 @NoArgsConstructor

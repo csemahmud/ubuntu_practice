@@ -46,6 +46,8 @@ public class UserDAO {
     @Column(name = "email", length = 100, unique = true, nullable = false)
     private String email;
 
+    @NotBlank
+    @Size(min = 60, max = 100) // e.g., BCrypt hash ~60 chars
     @Column(name = "password", length = 100, nullable = false)
     private String hashedPassword; // will be set via UserMapper
 
