@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.khan.LogInPostGre2508App.dto.UserDTO;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 /**
  * UserGateway: Handles CRUD operations for User using DTOs
  * Validates business rules and maps between DTO and DAO
- * Author: KHAN MAHMUDUL HASAN CSE BD JP
+ * @author KHAN MAHMUDUL HASAN CSE BD JP
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -105,10 +106,39 @@ public class UserGateway {
         if (userDTO.getId() == null) {
             throw new IllegalArgumentException("User ID must be provided for update.");
         }
+
+        // Fetch managed user entity
+        UserDAO existingUser = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        // Fetch category
         CategoryDAO category = categoryRepository.findById(userDTO.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+
+        // Validate DTO
         validator.validateSaveOrUpdate(userDTO);
-        UserDAO updated = userRepository.save(UserMapper.toEntity(userDTO, category));
+
+        // Update fields
+        existingUser.setName(userDTO.getName());
+        existingUser.setEmail(userDTO.getEmail());
+        existingUser.setCategory(category);
+        existingUser.setDomain(userDTO.getDomain());
+        existingUser.setAge(userDTO.getAge());
+        existingUser.setExperience(userDTO.getExperience());
+        existingUser.setSalary(userDTO.getSalary());
+        existingUser.setImagePath(userDTO.getImagePath());
+        existingUser.setImageName(userDTO.getImageName());
+
+        // Only update password if rawPassword is provided
+        if (userDTO.getRawPassword() != null && !userDTO.getRawPassword().isBlank()) {
+            existingUser.setHashedPassword(
+                new BCryptPasswordEncoder().encode(userDTO.getRawPassword())
+            );
+        }
+
+        // Save the managed entity
+        UserDAO updated = userRepository.save(existingUser);
+
         return UserMapper.toDTO(updated);
     }
 
