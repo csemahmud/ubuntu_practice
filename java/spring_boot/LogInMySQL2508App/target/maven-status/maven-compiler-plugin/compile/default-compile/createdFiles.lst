@@ -1,5 +1,10 @@
+com\khan\LogInMySQL2508App\repository\package-info.class
 com\khan\LogInMySQL2508App\models\CategoryDAO$CategoryDAOBuilder.class
+com\khan\LogInMySQL2508App\dal\package-info.class
 com\khan\LogInMySQL2508App\models\CategoryDAO.class
+com\khan\LogInMySQL2508App\bll\package-info.class
+com\khan\LogInMySQL2508App\dto\package-info.class
+com\khan\LogInMySQL2508App\util\package-info.class
 com\khan\LogInMySQL2508App\models\UserDAO$UserDAOBuilder.class
 com\khan\LogInMySQL2508App\models\package-info.class
 com\khan\LogInMySQL2508App\models\UserDAO.class

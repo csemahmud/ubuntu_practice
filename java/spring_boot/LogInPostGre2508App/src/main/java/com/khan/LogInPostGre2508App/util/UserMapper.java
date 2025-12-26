@@ -1,9 +1,10 @@
 package com.khan.LogInPostGre2508App.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.khan.LogInPostGre2508App.dto.UserDTO;
-import com.khan.LogInPostGre2508App.models.UserDAO;
 import com.khan.LogInPostGre2508App.models.CategoryDAO;
+import com.khan.LogInPostGre2508App.models.UserDAO;
 
 /**
  * UserMapper: Maps between UserDTO and UserDAO
@@ -49,6 +50,9 @@ public class UserMapper {
         dto.setSalary(user.getSalary());
         dto.setImagePath(user.getImagePath());
         dto.setImageName(user.getImageName());
+
+        // ✅ Include hashed password for login
+        dto.setHashedPassword(user.getHashedPassword());
         return dto;
     }
 }

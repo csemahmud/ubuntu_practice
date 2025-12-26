@@ -49,6 +49,9 @@ public class UserMapper {
         dto.setSalary(user.getSalary());
         dto.setImagePath(user.getImagePath());
         dto.setImageName(user.getImageName());
+
+        // ✅ Include hashed password for login
+        dto.setHashedPassword(user.getHashedPassword());
         return dto;
     }
 }

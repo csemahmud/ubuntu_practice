@@ -2,6 +2,9 @@ package com.khan.LogInPostGre2508App.util;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.khan.LogInPostGre2508App.dto.UserDTO;
 import com.khan.LogInPostGre2508App.models.UserDAO;
 import com.khan.LogInPostGre2508App.repository.IUserRepository;
@@ -11,10 +14,12 @@ import com.khan.LogInPostGre2508App.repository.IUserRepository;
  * Uses repository to check uniqueness and deletion constraints
  * Author: KHAN MAHMUDUL HASAN CSE BD JP
  */
+@Component
 public class UserValidator {
 
     private final IUserRepository userRepository;
 
+    @Autowired
     public UserValidator(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }

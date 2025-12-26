@@ -8,7 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.khan.LogInPostGre2508App.dal.UserGateway;
+import com.khan.LogInPostGre2508App.dto.LoginRequestDTO;
+import com.khan.LogInPostGre2508App.dto.LoginResponseDTO;
 import com.khan.LogInPostGre2508App.dto.UserDTO;
+
+import jakarta.validation.Valid;
 
 /**
  * UserManager: REST API for User operations using DTOs
@@ -59,6 +63,36 @@ public class UserManager {
         return ResponseEntity.ok(
                 new ApiResponse<>(savedDTOs, savedDTOs.size() + " users have been SAVED successfully")
         );
+    }
+    
+ // ------------------ LOGIN ------------------
+    
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<LoginResponseDTO>> login(
+            @Valid @RequestBody LoginRequestDTO loginRequest) {
+        try {
+            // Validate credentials
+            UserDTO userDTO = userGateway.login(
+                    loginRequest.getEmail(),
+                    loginRequest.getPassword()
+            );
+
+            // Build response EXACTLY matching constructor
+            LoginResponseDTO response = new LoginResponseDTO(
+                    "",                     // token (placeholder)
+                    "Login successful",     // message
+                    userDTO.getId() != null ? userDTO.getId().longValue() : null,  // userId (Long) // convert Integer → Long safely        
+                    userDTO.getName()       // name
+            );
+
+            return ResponseEntity.ok(
+                    new ApiResponse<>(response, "Login successful")
+            );
+
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ApiResponse<>(null, ex.getMessage()));
+        }
     }
 
     // ------------------ READ ------------------

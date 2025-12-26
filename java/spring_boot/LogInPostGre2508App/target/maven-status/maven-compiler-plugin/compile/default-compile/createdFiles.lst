@@ -1,1 +1,6 @@
+com\khan\LogInPostGre2508App\repository\package-info.class
+com\khan\LogInPostGre2508App\bll\package-info.class
+com\khan\LogInPostGre2508App\util\package-info.class
+com\khan\LogInPostGre2508App\dto\package-info.class
+com\khan\LogInPostGre2508App\dal\package-info.class
 com\khan\LogInPostGre2508App\models\package-info.class

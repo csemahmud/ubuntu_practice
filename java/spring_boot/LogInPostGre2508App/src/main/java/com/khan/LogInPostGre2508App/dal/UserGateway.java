@@ -8,14 +8,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.khan.LogInPostGre2508App.dto.UserDTO;
-import com.khan.LogInPostGre2508App.models.UserDAO;
 import com.khan.LogInPostGre2508App.models.CategoryDAO;
-import com.khan.LogInPostGre2508App.repository.IUserRepository;
+import com.khan.LogInPostGre2508App.models.UserDAO;
 import com.khan.LogInPostGre2508App.repository.ICategoryRepository;
+import com.khan.LogInPostGre2508App.repository.IUserRepository;
 import com.khan.LogInPostGre2508App.util.UserMapper;
 import com.khan.LogInPostGre2508App.util.UserValidator;
 
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -24,9 +23,9 @@ import lombok.NoArgsConstructor;
  * Validates business rules and maps between DTO and DAO
  * @author KHAN MAHMUDUL HASAN CSE BD JP
  */
+@Service
 @AllArgsConstructor
 @NoArgsConstructor
-@Service
 public class UserGateway {
 
     @Autowired
@@ -35,37 +34,67 @@ public class UserGateway {
     @Autowired
     private ICategoryRepository categoryRepository;
 
+    @Autowired
     private UserValidator validator;
 
-    @PostConstruct
-    public void init() {
-        validator = new UserValidator(userRepository);
-    }
+    private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // ------------------ Create / Save ------------------
 
     public UserDTO saveUser(UserDTO userDTO) {
-        System.out.println("Saving UserDTO: " + userDTO);
+
         if (userDTO.getCategoryId() == null) {
-            throw new IllegalArgumentException("CategoryId is required but was null");
+            throw new IllegalArgumentException("CategoryId is required");
         }
 
         CategoryDAO category = categoryRepository.findById(userDTO.getCategoryId())
-            .orElseThrow(() -> new IllegalArgumentException("Category not found with id " + userDTO.getCategoryId()));
+                .orElseThrow(() -> new IllegalArgumentException("Category not found"));
 
         validator.validateSaveOrUpdate(userDTO);
-        UserDAO saved = userRepository.save(UserMapper.toEntity(userDTO, category));
+
+        UserDAO saved = userRepository.save(
+                UserMapper.toEntity(userDTO, category)
+        );
+
         return UserMapper.toDTO(saved);
     }
-
+    
     public List<UserDTO> saveUsers(List<UserDTO> userDTOs) {
-        return userDTOs.stream().map(dto -> {
+
+        List<UserDAO> entities = userDTOs.stream().map(dto -> {
             CategoryDAO category = categoryRepository.findById(dto.getCategoryId())
                     .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+
             validator.validateSaveOrUpdate(dto);
-            UserDAO saved = userRepository.save(UserMapper.toEntity(dto, category));
-            return UserMapper.toDTO(saved);
+
+            return UserMapper.toEntity(dto, category);
         }).collect(Collectors.toList());
+
+        List<UserDAO> saved = userRepository.saveAll(entities);
+
+        return saved.stream()
+                .map(UserMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    // ------------------ Login ------------------
+
+    public UserDTO login(String email, String rawPassword) {
+
+        UserDAO user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(rawPassword, user.getHashedPassword())) {
+            throw new IllegalArgumentException("Invalid email or password");
+        }
+
+        // Convert to DTO
+        UserDTO dto = UserMapper.toDTO(user);
+
+        // Add JWT later here
+        // dto.setToken(jwtUtil.generateToken(user.getEmail()));
+
+        return dto;
     }
 
     // ------------------ Read ------------------
@@ -95,6 +124,10 @@ public class UserGateway {
     }
 
     public List<UserDTO> getUsersByCategoryId(Integer categoryId) {
+
+        categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+
         return userRepository.findByCategoryId(categoryId).stream()
                 .map(UserMapper::toDTO)
                 .collect(Collectors.toList());
@@ -103,51 +136,45 @@ public class UserGateway {
     // ------------------ Update ------------------
 
     public UserDTO updateUser(UserDTO userDTO) {
+
         if (userDTO.getId() == null) {
-            throw new IllegalArgumentException("User ID must be provided for update.");
+            throw new IllegalArgumentException("User ID must be provided.");
         }
 
-        // Fetch managed user entity
-        UserDAO existingUser = userRepository.findById(userDTO.getId())
+        UserDAO existing = userRepository.findById(userDTO.getId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        // Fetch category
         CategoryDAO category = categoryRepository.findById(userDTO.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Category not found"));
 
-        // Validate DTO
         validator.validateSaveOrUpdate(userDTO);
 
-        // Update fields
-        existingUser.setName(userDTO.getName());
-        existingUser.setEmail(userDTO.getEmail());
-        existingUser.setCategory(category);
-        existingUser.setDomain(userDTO.getDomain());
-        existingUser.setAge(userDTO.getAge());
-        existingUser.setExperience(userDTO.getExperience());
-        existingUser.setSalary(userDTO.getSalary());
-        existingUser.setImagePath(userDTO.getImagePath());
-        existingUser.setImageName(userDTO.getImageName());
+        existing.setName(userDTO.getName());
+        existing.setEmail(userDTO.getEmail());
+        existing.setCategory(category);
+        existing.setDomain(userDTO.getDomain());
+        existing.setAge(userDTO.getAge());
+        existing.setExperience(userDTO.getExperience());
+        existing.setSalary(userDTO.getSalary());
+        existing.setImagePath(userDTO.getImagePath());
+        existing.setImageName(userDTO.getImageName());
 
-        // Only update password if rawPassword is provided
         if (userDTO.getRawPassword() != null && !userDTO.getRawPassword().isBlank()) {
-            existingUser.setHashedPassword(
-                new BCryptPasswordEncoder().encode(userDTO.getRawPassword())
+            existing.setHashedPassword(
+                passwordEncoder.encode(userDTO.getRawPassword())
             );
         }
 
-        // Save the managed entity
-        UserDAO updated = userRepository.save(existingUser);
-
-        return UserMapper.toDTO(updated);
+        return UserMapper.toDTO(userRepository.save(existing));
     }
 
     // ------------------ Delete ------------------
 
     public UserDTO deleteUser(int id) {
-        UserDAO existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found for deletion."));
-        userRepository.delete(existingUser);
-        return UserMapper.toDTO(existingUser);
+        UserDAO existing = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        userRepository.delete(existing);
+        return UserMapper.toDTO(existing);
     }
 }
